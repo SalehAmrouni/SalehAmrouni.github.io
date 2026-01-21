@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References & Work Log | Student Atlas</title>
+    
+    <!-- Pre-initialization: Apply saved accessibility settings before page renders -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('studentAtlasTheme');
+            if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+            const savedAccessibility = localStorage.getItem('studentAtlasAccessibility');
+            if (savedAccessibility) {
+                try {
+                    const accessibility = JSON.parse(savedAccessibility);
+                    const html = document.documentElement;
+                    if (accessibility.fontSize === 'large') html.classList.add('large-text');
+                    else if (accessibility.fontSize === 'extra-large') html.classList.add('extra-large-text');
+                    if (accessibility.highContrast) html.classList.add('high-contrast');
+                    if (accessibility.colorBlindMode && accessibility.colorBlindMode !== 'normal') html.classList.add(accessibility.colorBlindMode);
+                    if (accessibility.dyslexiaFriendly) html.classList.add('dyslexia-friendly');
+                    if (accessibility.reducedMotion) html.classList.add('reduced-motion');
+                } catch (e) {}
+            }
+        })();
+    </script>
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    
+    <style>
+                /* Custom color for research links */
+                .research-links a {
+                    color: #38bdf8 !important; /* sky blue, stands out */
+                    text-decoration: underline;
+                    font-weight: 600;
+                    transition: color 0.2s;
+                }
+                .research-links a:hover {
+                    color: #0ea5e9 !important; /* darker blue on hover */
+                }
+        .ref-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .doc-section {
+            margin-bottom: 4rem;
+        }
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .pdf-placeholder {
+            width: 100%;
+            height: 800px;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--text-dim);
+            overflow: hidden;
+        }
+        .back-nav {
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-nav:hover {
+            text-decoration: underline;
+        }
+        /* Reader Overlay Styles */
+        #readerOverlay {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background:rgba(10,10,10,0.98);
+            color:#fff;
+            z-index:20000;
+            overflow:auto;
+            padding:2rem;
+        }
+        #readerOverlay button {
+            position:absolute;
+            top:1rem;
+            right:2rem;
+            font-size:2rem;
+            background:none;
+            color:#fff;
+            border:none;
+            cursor:pointer;
+        }
+        #readerOverlay h2 {
+            font-size:2.5rem;
+            margin-bottom:1.5rem;
+        }
+        #readerOverlay #readerContent {
+            font-size:1.5rem;
+            line-height:2;
+            max-width:900px;
+            margin:auto;
+        }
+        #readerOverlay button#readAloudBtn {
+            margin-top:2rem;
+            font-size:1.2rem;
+            padding:0.75rem 2rem;
+            background:#10b981;
+            color:#000;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="ref-container">
+        <a href="dashboard.html" class="back-nav">
+            <i data-lucide="arrow-left"></i> Back to Dashboard
+        </a>
+
+        <header class="doc-section">
+            <h1 class="text-gradient">Project Documentation</h1>
+            <p class="text-dim">TSA Webmaster 2026 Entry | References & Technical Stack</p>
+        </header>
+
+        <section class="doc-section">
+                    <section class="doc-section">
+                        <h2 class="section-title">Research & Learning Links</h2>
+                        <p class="text-dim">The following resources were used for learning how to style and understand the dynamics of modern learning websites:</p>
+                        <ul class="text-dim research-links" style="list-style: none; line-height: 1.8; margin-top: 1rem;">
+                            <li><a href="https://github.com/" target="_blank" style="color: inherit;">GitHub</a> (Open source code and UI inspiration)</li>
+                            <li><a href="https://www.schoolinks.com/" target="_blank" style="color: inherit;">SchooLinks</a> (Learning platform research)</li>
+                            <li><a href="https://outschool.com/online-classes/college?utm_source=google&utm_medium=ads_pmax&utm_campaign=UCAN_Performance-Max_ND_Neurodivergent-ADHD&campaign_id=23010082229&couponCode=BTS40&gad_source=1&gad_campaignid=23014087132&gbraid=0AAAAADe3uiClD46H9tYkCvwfJ2NjBh1ih&gclid=EAIaIQobChMIwKWj75-akgMVQhFECB0jWgF5EAAYAyAAEgIp8_D_BwE" target="_blank" style="color: inherit;">Outschool College Classes</a> (Modern online class UI and structure)</li>
+                            <li><a href="https://www.khanacademy.org/" target="_blank" style="color: inherit;">Khan Academy</a> (Educational content and interface design)</li>
+                        </ul>
+                    </section>
+            <h2 class="section-title">Technical Stack</h2>
+            <div class="stack-grid">
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Core Technologies</h3>
+                    <ul class="text-dim" style="list-style: none; line-height: 1.8;">
+                        <li>HTML5 Semantic Markup</li>
+                        <li>CSS3 Custom Properties (Variables)</li>
+                        <li>Vanilla JavaScript (ES6+)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Libraries Used</h3>
+                    <ul class="text-dim" style="list-style: none; line-height: 1.8;">
+                        <li><a href="https://lucide.dev" target="_blank" style="color: inherit;">Lucide Icons</a> (UI Icons)</li>
+                        <li>Custom AI Engine (Zeus AI)</li>
+                        <li>OpenDyslexic Font (Accessibility)</li>
+                        <li><a href="https://github.com/spencermountain/compromise" target="_blank" style="color: inherit;">Compromise NLP</a> (Lightweight JavaScript Natural Language Processing, browser-based, MIT License)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="doc-section">
+            <h2 class="section-title">TSA Work Log (Official PDF)</h2>
+            <div class="pdf-placeholder">
+                <embed src="TSA%20WORK%20LOG.pdf" type="application/pdf" width="100%" height="600px" style="border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card);" />
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a href="TSA%20WORK%20LOG.pdf" target="_blank" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Download/View TSA WORK LOG.pdf</a>
+                </div>
+            </div>
+        </section>
+
+        <footer style="margin-top: 6rem; padding-bottom: 4rem; text-align: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+            <p class="text-dim">&copy; 2026 Student Atlas. All Rights Reserved.</p>
+            <p class="text-dim" style="font-size: 0.8rem; margin-top: 0.5rem;">TSA Webmaster Chapter Entry</p>
+        </footer>
+    </div>
+
+    <!-- Reader Overlay Modal -->
+    <div id="readerOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(10,10,10,0.98); color:#fff; z-index:20000; overflow:auto; padding:2rem;">
+        <button onclick="closeReaderOverlay()" style="position:absolute; top:1rem; right:2rem; font-size:2rem; background:none; color:#fff; border:none; cursor:pointer;">&times;</button>
+        <h2 style="font-size:2.5rem; margin-bottom:1.5rem;">Reader Mode</h2>
+        <div id="readerContent" style="font-size:1.5rem; line-height:2; max-width:900px; margin:auto;"></div>
+        <button id="readAloudBtn" onclick="readAloud()" style="margin-top:2rem; font-size:1.2rem; padding:0.75rem 2rem; background:#10b981; color:#000; border:none; border-radius:8px; cursor:pointer;">Read Aloud</button>
+    </div>
+
+    <script>
+        // Initialize icons
+        lucide.createIcons();
+        
+        // Simple script to hide fallback if embed loads (Browser dependent)
+        const embed = document.querySelector('embed');
+        embed.addEventListener('load', () => {
+            document.getElementById('pdf-fallback').style.display = 'none';
+        });
+
+        // Reader Overlay Script
+        function openReaderOverlay() {
+            var main = document.getElementById('main-content');
+            var content = main ? main.innerText : document.body.innerText;
+            document.getElementById('readerContent').innerText = content;
+            document.getElementById('readerOverlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeReaderOverlay() {
+            document.getElementById('readerOverlay').style.display = 'none';
+            document.body.style.overflow = '';
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+        }
+        function readAloud() {
+            if (!window.speechSynthesis) return;
+            var text = document.getElementById('readerContent').innerText;
+            var utter = new SpeechSynthesisUtterance(text);
+            utter.rate = 1;
+            utter.pitch = 1;
+            utter.volume = 1;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(utter);
+        }
+        window.addEventListener('DOMContentLoaded', function() {
+            var readerBtn = document.getElementById('screenReader');
+            if (readerBtn) {
+                readerBtn.onclick = openReaderOverlay;
+            }
+        });
+    </script>
+</body>
+</html>
