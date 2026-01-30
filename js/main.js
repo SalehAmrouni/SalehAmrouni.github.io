@@ -67,10 +67,12 @@ function loadStudentProfile() {
     } else {
         // Default demo profile for judges
         appState.studentProfile = {
-            id: 'tsa_student_2026',
+            id: 'TSA Student 2026',
             username: 'tsa_student_2026',
             email: 'student@tsaatlas.org',
-            grade: '11th',
+            // Profile name for Add an Ally page
+            grade: 'TSA Student 2026', // Display name
+            gradeLevel: 11, // Numeric grade for logic
             gpa: 3.8,
             serviceHours: 120,
             skills: ['STEM', 'Research', 'Leadership', 'Programming'],
@@ -122,7 +124,7 @@ function calculateMatchScore(opportunity) {
     
     // Grade Match (15 points)
     if (opportunity.eligibility?.grades && opportunity.eligibility.grades.length > 0) {
-        const gradeNum = parseInt(profile.grade);
+        const gradeNum = profile.gradeLevel;
         if (opportunity.eligibility.grades.includes(gradeNum)) {
             score += 15;
         } else {
