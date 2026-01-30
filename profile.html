@@ -520,41 +520,47 @@
     <script src="js/main.js"></script>
     
     <script>
-        // Profile page functionality
+        // =============================
+        // PROFILE PAGE FUNCTIONALITY
+        // =============================
         let currentTab = 'profile';
-        
-        // Listen for bookmark changes from other tabs
+
+        // Listen for bookmark changes from other tabs (sync bookmarks across tabs)
         window.addEventListener('storage', function(e) {
             if (e.key === 'studentAtlasBookmarks') {
-                // Reload bookmarks if on bookmarks tab
+                // Only reload bookmarks if currently viewing the bookmarks tab
                 if (currentTab === 'bookmarks') {
                     loadBookmarks();
                 }
             }
         });
         let passwordVisible = false;
-        
-        // Initialize profile page
+
+        // Initialize profile page on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Lucide icons
+            // Initialize Lucide icons for all SVGs
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
-            
-            // Load profile data
+
+            // Load profile data into the page
             loadProfileData();
-            
-            // Load bookmarks
+
+            // Load bookmarks into the bookmarks tab
             loadBookmarks();
-            
-            // Check URL hash for tab
+
+            // Check the URL hash to open the correct tab on page load
             checkUrlHash();
-            
-            // Set up event listeners
+
+            // Set up event listeners for profile actions
             setupProfileListeners();
-            
-            // Update last login time
+
+            // Update the last login time display
             updateLastLogin();
+
+            // Always set the profile dropdown username to 'TSA Student 2026'
+            var userNameSpan = document.getElementById('userName');
+            if (userNameSpan) userNameSpan.textContent = 'TSA Student 2026';
         });
         
         // ============================================
@@ -615,13 +621,17 @@
         // ============================================
         // PROFILE DATA LOADING
         // ============================================
-        
+
+        /**
+         * Loads the student profile data and updates the DOM.
+         * Ensures the profile dropdown always shows 'TSA Student 2026'.
+         */
         function loadProfileData() {
             const profile = StudentAtlas.getStudentProfile();
-            
+
             if (profile) {
-                // Update profile information
-                document.getElementById('profileName').textContent = profile.username || 'TSA Student 2026';
+                // Update profile information fields
+                document.getElementById('profileName').textContent = 'TSA Student 2026'; // Always display with spaces
                 document.getElementById('profileGrade').textContent = profile.grade || '11th Grade';
                 document.getElementById('profileGPA').textContent = profile.gpa || '3.8';
                 document.getElementById('profileHours').textContent = (profile.serviceHours || '120') + ' hours';
@@ -630,13 +640,15 @@
                 document.getElementById('profileSkills').textContent = profile.skills?.join(', ') || 'Programming, Research, Leadership';
                 document.getElementById('profileLeadership').textContent = profile.leadershipRoles?.join(', ') || 'Club President, Team Captain';
                 document.getElementById('profileFinancial').textContent = profile.financialNeed ? 'Yes' : 'No';
-                
-                // Update credentials
-                document.getElementById('credUsername').textContent = profile.username || 'tsa_student_2026';
+
+                // Update credentials section
+                document.getElementById('credUsername').textContent = 'TSA Student 2026'; // Always display with spaces
                 document.getElementById('credEmail').textContent = profile.email || 'student@tsaatlas.org';
-                
-                // Update username in header
-                
+
+                // Update username in header dropdown
+                var userNameSpan = document.getElementById('userName');
+                if (userNameSpan) userNameSpan.textContent = 'TSA Student 2026';
+
                 // Calculate and update statistics
                 updateProfileStatistics();
             }
