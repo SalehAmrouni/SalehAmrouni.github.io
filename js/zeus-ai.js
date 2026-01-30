@@ -1,6 +1,6 @@
 // ============================================
-// zeus-ai.js
-// Zeus AI Counselor functionality
+// ai.js
+// AI Counselor functionality
 // ============================================
 
 class ZeusAI {
