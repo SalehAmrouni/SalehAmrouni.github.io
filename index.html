@@ -5,8 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saleh Amrouni // Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* Integrated Physics Canvas Layering */
+    #physics-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background-color: #0f172a; /* Slate dark background */
+    }
+
+    /* Ensure desktop UI sits above the background canvas */
+    .menu-bar {
+      position: relative;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .desktop {
+      position: relative;
+      z-index: 5;
+      pointer-events: none; /* Clicks pass through empty desktop space to canvas */
+    }
+
+    .window {
+      pointer-events: auto; /* Re-enable clicks for windows, buttons, and links */
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Background Physics Canvas -->
+  <canvas id="physics-canvas"></canvas>
 
   <!-- Retro Menu Bar -->
   <header class="menu-bar">
@@ -53,7 +86,6 @@
           <div class="project-card">
             <div class="card-header">PROJECT_01.DAT</div>
             <div class="img-wrapper">
-              <!-- Replace with your image link or relative file path like images/project1.png -->
               <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+1+PREVIEW" alt="Project 1">
             </div>
             <div class="card-content">
@@ -107,5 +139,131 @@
 
   </main>
 
+  <!-- Physics Engine Script -->
+  <script>
+    const canvas = document.getElementById('physics-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const MAX_BODIES = 150;
+    const bodies = [];
+    let autoSpawnTimer = 0;
+    let globalTime = 0;
+    let isMouseDown = false;
+    let mousePos = { x: 0, y: 0 };
+
+    const neonColors = ['#38bdf8', '#34d399', '#f43f5e', '#a855f7', '#fbbf24'];
+
+    class Cube {
+      constructor(x, y, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.size = Math.random() * 18 + 16;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.vRot = (Math.random() - 0.5) * 5;
+        this.color = neonColors[Math.floor(Math.random() * neonColors.length)];
+      }
+
+      update(dt, gx, gy) {
+        this.vx += gx * dt;
+        this.vy += gy * dt;
+        this.x += this.vx * dt;
+        this.y += this.vy * dt;
+        this.rotation += this.vRot * dt;
+
+        const half = this.size / 2;
+        if (this.x - half < 0) { this.x = half; this.vx *= -0.8; }
+        if (this.x + half > canvas.width) { this.x = canvas.width - half; this.vx *= -0.8; }
+        if (this.y - half < 0) { this.y = half; this.vy *= -0.8; }
+        if (this.y + half > canvas.height) {
+          this.y = canvas.height - half;
+          this.vy *= -0.8;
+          if (Math.random() > 0.6) return false; // Recycle bottom cubes
+        }
+        return true;
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+
+        // Glow effect
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = 0.2;
+        ctx.fillRect(-this.size / 2 - 3, -this.size / 2 - 3, this.size + 6, this.size + 6);
+
+        // Solid core
+        ctx.globalAlpha = 1.0;
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+
+        ctx.restore();
+      }
+    }
+
+    function spawn(x, y) {
+      if (bodies.length < MAX_BODIES) {
+        const vx = (Math.random() - 0.5) * 300;
+        const vy = (Math.random() - 0.5) * 300;
+        bodies.push(new Cube(x, y, vx, vy));
+      }
+    }
+
+    // Input listeners (Spawns cubes on background clicks/drags)
+    window.addEventListener('mousedown', (e) => { 
+      if (e.target === canvas || e.target.classList.contains('desktop')) {
+        isMouseDown = true; 
+        mousePos = { x: e.clientX, y: e.clientY }; 
+        spawn(e.clientX, e.clientY); 
+      }
+    });
+    window.addEventListener('mouseup', () => isMouseDown = false);
+    window.addEventListener('mousemove', (e) => { mousePos = { x: e.clientX, y: e.clientY }; });
+
+    // Main animation loop
+    let lastTime = performance.now();
+    function loop(now) {
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+      globalTime += dt;
+
+      if (isMouseDown) spawn(mousePos.x, mousePos.y);
+
+      // Continuous ambient spawner
+      autoSpawnTimer += dt;
+      if (autoSpawnTimer >= 0.4 && bodies.length < MAX_BODIES) {
+        autoSpawnTimer = 0;
+        bodies.push(new Cube(Math.random() * (canvas.width - 100) + 50, -20, (Math.random() - 0.5) * 150, Math.random() * 100 + 100));
+      }
+
+      // Smooth floating gravity wave
+      const gx = Math.sin(globalTime * 1.2) * 250;
+      const gy = Math.cos(globalTime * 0.7) * 120 + 180;
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = bodies.length - 1; i >= 0; i--) {
+        const alive = bodies[i].update(dt, gx, gy);
+        if (!alive) {
+          bodies.splice(i, 1);
+        } else {
+          bodies[i].draw();
+        }
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+  </script>
 </body>
 </html>
