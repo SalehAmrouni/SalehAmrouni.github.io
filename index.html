@@ -1,13 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saleh Amrouni</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saleh Amrouni // Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is completely custom code!</p>
+
+  <!-- Retro Menu Bar -->
+  <header class="menu-bar">
+    <span class="menu-item active">FILE</span>
+    <span class="menu-item">EDIT</span>
+    <span class="menu-item">VIEW</span>
+    <span class="menu-item">PROJECTS</span>
+    <span class="menu-item">HELP</span>
+  </header>
+
+  <main class="desktop">
+
+    <!-- Bio / Intro Window -->
+    <section class="window">
+      <div class="title-bar">
+        <span class="title">C:\USERS\SALEH\README.TXT</span>
+        <div class="window-controls">
+          <button>_</button>
+          <button>&#9633;</button>
+          <button class="close">X</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <h1>> SALEH AMROUNI</h1>
+        <p class="subtitle">DEVELOPER // SYSTEM ARCHITECT</p>
+        <p>Building high-performance software, custom tools, and systems from scratch.</p>
+      </div>
+    </section>
+
+    <!-- Projects Window -->
+    <section class="window">
+      <div class="title-bar">
+        <span class="title">C:\PORTFOLIO\PROJECTS.EXE</span>
+        <div class="window-controls">
+          <button>_</button>
+          <button>&#9633;</button>
+          <button class="close">X</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="projects-grid">
+
+          <!-- PROJECT 1 -->
+          <div class="project-card">
+            <div class="card-header">PROJECT_01.DAT</div>
+            <div class="img-wrapper">
+              <!-- Replace with your image link or relative file path like images/project1.png -->
+              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+1+PREVIEW" alt="Project 1">
+            </div>
+            <div class="card-content">
+              <h3>Custom Game Engine</h3>
+              <p>Built a low-level rendering engine using C++ and OpenGL with custom spatial partitioning.</p>
+              <div class="tags">
+                <span>C++</span>
+                <span>OpenGL</span>
+              </div>
+              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
+            </div>
+          </div>
+
+          <!-- PROJECT 2 -->
+          <div class="project-card">
+            <div class="card-header">PROJECT_02.DAT</div>
+            <div class="img-wrapper">
+              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+2+PREVIEW" alt="Project 2">
+            </div>
+            <div class="card-content">
+              <h3>Custom Scripting Language</h3>
+              <p>A lightweight bytecode compiler and virtual machine written entirely from scratch.</p>
+              <div class="tags">
+                <span>C</span>
+                <span>Assembly</span>
+              </div>
+              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
+            </div>
+          </div>
+
+          <!-- PROJECT 3 -->
+          <div class="project-card">
+            <div class="card-header">PROJECT_03.DAT</div>
+            <div class="img-wrapper">
+              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+3+PREVIEW" alt="Project 3">
+            </div>
+            <div class="card-content">
+              <h3>System Utilities</h3>
+              <p>High-efficiency system tools and performance monitoring scripts.</p>
+              <div class="tags">
+                <span>Python</span>
+                <span>Linux</span>
+              </div>
+              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
 </body>
 </html>
