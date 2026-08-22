@@ -1,8 +1,11 @@
 {
   "title": "Lights in raylib and shadows",
-  "description": "Built a simple shaodw and lighting system using raylib.",
+  "description": "Built a simple shadow and lighting system using raylib.",
   "tags": ["C", "3D"],
+  "thumbnail": "thumbnail.png",
   "githubUrl": "https://github.com/SalehAmrouni",
   "hasHoverVideo": false,
-  "hasDownload": false
+  "hasDownload": false,
+  "images": ["1.png", "2.png"],
+  "videos": []
 }
