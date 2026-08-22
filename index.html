@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,64 +81,86 @@
         </div>
       </div>
       <div class="window-body">
-        <div class="projects-grid">
-
-          <!-- PROJECT 1 -->
-          <div class="project-card">
-            <div class="card-header">PROJECT_01.DAT</div>
-            <div class="img-wrapper">
-              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+1+PREVIEW" alt="Project 1">
-            </div>
-            <div class="card-content">
-              <h3>Custom Game Engine</h3>
-              <p>Built a low-level rendering engine using C++ and OpenGL with custom spatial partitioning.</p>
-              <div class="tags">
-                <span>C++</span>
-                <span>OpenGL</span>
-              </div>
-              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
-            </div>
-          </div>
-
-          <!-- PROJECT 2 -->
-          <div class="project-card">
-            <div class="card-header">PROJECT_02.DAT</div>
-            <div class="img-wrapper">
-              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+2+PREVIEW" alt="Project 2">
-            </div>
-            <div class="card-content">
-              <h3>Custom Scripting Language</h3>
-              <p>A lightweight bytecode compiler and virtual machine written entirely from scratch.</p>
-              <div class="tags">
-                <span>C</span>
-                <span>Assembly</span>
-              </div>
-              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
-            </div>
-          </div>
-
-          <!-- PROJECT 3 -->
-          <div class="project-card">
-            <div class="card-header">PROJECT_03.DAT</div>
-            <div class="img-wrapper">
-              <img src="https://via.placeholder.com/400x225/111/fff?text=PROJECT+3+PREVIEW" alt="Project 3">
-            </div>
-            <div class="card-content">
-              <h3>System Utilities</h3>
-              <p>High-efficiency system tools and performance monitoring scripts.</p>
-              <div class="tags">
-                <span>Python</span>
-                <span>Linux</span>
-              </div>
-              <a href="https://github.com/SalehAmrouni" class="retro-btn">[ VIEW SOURCE ]</a>
-            </div>
-          </div>
-
+        <!-- Dynamic Projects Container -->
+        <div class="projects-grid" id="projects-container">
+          <!-- Dynamically populated via JS -->
         </div>
       </div>
     </section>
 
   </main>
+
+  <!-- Dynamic Folder Loader Script -->
+  <script>
+    async function fetchProjects() {
+      const container = document.getElementById('projects-container');
+      
+      try {
+        const res = await fetch('projects/projects.json');
+        const projectFolders = await res.json();
+
+        container.innerHTML = '';
+
+        for (const folder of projectFolders) {
+          const basePath = `projects/${folder}`;
+          
+          try {
+            const metaRes = await fetch(`${basePath}/meta.json`);
+            const meta = await metaRes.json();
+
+            const card = document.createElement('div');
+            card.className = 'project-card';
+
+            const tagsHTML = meta.tags
+              ? meta.tags.map(t => `<span>${t}</span>`).join('')
+              : '';
+
+            const videoHTML = meta.hasHoverVideo
+              ? `<video class="hover-video" src="${basePath}/hover.mp4" loop muted playsinline></video>`
+              : '';
+
+            const downloadBtnHTML = meta.hasDownload
+              ? `<a href="${basePath}/download/download.zip" download class="retro-btn">[ DOWNLOAD ]</a>`
+              : '';
+
+            card.innerHTML = `
+              <div class="card-header">${folder.toUpperCase()}.DAT</div>
+              <div class="img-wrapper">
+                <div class="tags-overlay">${tagsHTML}</div>
+                <img src="${basePath}/thumbnail.jpg" alt="${meta.title}" onerror="this.src='https://via.placeholder.com/400x225/111/fff?text=NO+THUMBNAIL'">
+                ${videoHTML}
+              </div>
+              <div class="card-content">
+                <h3>${meta.title}</h3>
+                <p>${meta.description}</p>
+                <div class="btn-group">
+                  <a href="${meta.githubUrl || '#'}" target="_blank" class="retro-btn">[ VIEW SOURCE ]</a>
+                  ${downloadBtnHTML}
+                </div>
+              </div>
+            `;
+
+            if (meta.hasHoverVideo) {
+              const videoEl = card.querySelector('.hover-video');
+              card.addEventListener('mouseenter', () => videoEl.play().catch(() => {}));
+              card.addEventListener('mouseleave', () => {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+              });
+            }
+
+            container.appendChild(card);
+          } catch (e) {
+            console.error(`Error loading folder: ${folder}`, e);
+          }
+        }
+      } catch (e) {
+        container.innerHTML = '<p style="color:var(--accent);">No projects found or projects/projects.json missing.</p>';
+      }
+    }
+
+    fetchProjects();
+  </script>
 
   <!-- Physics Engine Script -->
   <script>
@@ -186,7 +209,7 @@
         if (this.y + half > canvas.height) {
           this.y = canvas.height - half;
           this.vy *= -0.8;
-          if (Math.random() > 0.6) return false; // Recycle bottom cubes
+          if (Math.random() > 0.6) return false;
         }
         return true;
       }
@@ -196,12 +219,10 @@
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
 
-        // Glow effect
         ctx.fillStyle = this.color;
         ctx.globalAlpha = 0.2;
         ctx.fillRect(-this.size / 2 - 3, -this.size / 2 - 3, this.size + 6, this.size + 6);
 
-        // Solid core
         ctx.globalAlpha = 1.0;
         ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
 
@@ -217,7 +238,6 @@
       }
     }
 
-    // Input listeners (Spawns cubes on background clicks/drags)
     window.addEventListener('mousedown', (e) => { 
       if (e.target === canvas || e.target.classList.contains('desktop')) {
         isMouseDown = true; 
@@ -228,7 +248,6 @@
     window.addEventListener('mouseup', () => isMouseDown = false);
     window.addEventListener('mousemove', (e) => { mousePos = { x: e.clientX, y: e.clientY }; });
 
-    // Main animation loop
     let lastTime = performance.now();
     function loop(now) {
       const dt = Math.min((now - lastTime) / 1000, 0.05);
@@ -237,14 +256,12 @@
 
       if (isMouseDown) spawn(mousePos.x, mousePos.y);
 
-      // Continuous ambient spawner
       autoSpawnTimer += dt;
       if (autoSpawnTimer >= 0.4 && bodies.length < MAX_BODIES) {
         autoSpawnTimer = 0;
         bodies.push(new Cube(Math.random() * (canvas.width - 100) + 50, -20, (Math.random() - 0.5) * 150, Math.random() * 100 + 100));
       }
 
-      // Smooth floating gravity wave
       const gx = Math.sin(globalTime * 1.2) * 250;
       const gy = Math.cos(globalTime * 0.7) * 120 + 180;
 
