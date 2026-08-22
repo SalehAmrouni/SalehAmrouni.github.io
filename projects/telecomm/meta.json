@@ -1,0 +1,11 @@
+{
+  "title": "TELECOMM a server client test tool",
+  "description": "Built using ENET, Telecomm is basically a client and server text tool, that can be routed through other programs",
+  "tags": ["C", "NETWORKING","TOOL"],
+  "thumbnail": "thumbnail.png",
+  "githubUrl": "https://github.com/SalehAmrouni",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [],
+  "videos": []
+}
