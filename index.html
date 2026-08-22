@@ -90,40 +90,38 @@
 
   </main>
 
-  <!-- Dynamic Folder Loader Script -->
-  <script>
-    async function fetchProjects() {
-      const container = document.getElementById('projects-container');
-      
-      try {
-        const res = await fetch('projects/projects.json');
-        const projectFolders = await res.json();
+<script>
+  async function fetchProjects() {
+    const container = document.getElementById('projects-container');
+    
+    try {
+      const res = await fetch('projects/projects.json');
+      const projectFolders = await res.json();
 
-        container.innerHTML = '';
+      container.innerHTML = '';
 
-        for (const folder of projectFolders) {
-          const basePath = `projects/${folder}`;
+      for (const folder of projectFolders) {
+        const basePath = `projects/${folder}`;
+        
+        try {
+          const metaRes = await fetch(`${basePath}/meta.json`);
+          const meta = await metaRes.json();
+
+          const card = document.createElement('div');
+          card.className = 'project-card';
+
+          // Declare all variables BEFORE template literal generation
+          const thumbnailFile = meta.thumbnail || 'thumbnail.png';
           
-          try {
-            const metaRes = await fetch(`${basePath}/meta.json`);
-            const meta = await metaRes.json();
+          const tagsHTML = meta.tags
+            ? meta.tags.map(t => `<span>${t}</span>`).join('')
+            : '';
 
-            const card = document.createElement('div');
-            card.className = 'project-card';
+          const videoHTML = meta.hasHoverVideo
+            ? `<video class="hover-video" src="${basePath}/hover.mp4" loop muted playsinline></video>`
+            : '';
 
-            const tagsHTML = meta.tags
-              ? meta.tags.map(t => `<span>${t}</span>`).join('')
-              : '';
-
-            const videoHTML = meta.hasHoverVideo
-              ? `<video class="hover-video" src="${basePath}/hover.mp4" loop muted playsinline></video>`
-              : '';
-
-            const downloadBtnHTML = meta.hasDownload
-              ? `<a href="${basePath}/download/download.zip" download class="retro-btn">[ DOWNLOAD ]</a>`
-              : '';
-
-            card.innerHTML = `
+          card.innerHTML = `
             <div class="card-header">${folder.toUpperCase()}.DAT</div>
             <div class="img-wrapper">
               <div class="tags-overlay">${tagsHTML}</div>
@@ -139,27 +137,28 @@
             </div>
           `;
 
-            if (meta.hasHoverVideo) {
-              const videoEl = card.querySelector('.hover-video');
-              card.addEventListener('mouseenter', () => videoEl.play().catch(() => {}));
-              card.addEventListener('mouseleave', () => {
-                videoEl.pause();
-                videoEl.currentTime = 0;
-              });
-            }
-
-            container.appendChild(card);
-          } catch (e) {
-            console.error(`Error loading folder: ${folder}`, e);
+          // Hover video playback listener
+          if (meta.hasHoverVideo) {
+            const videoEl = card.querySelector('.hover-video');
+            card.addEventListener('mouseenter', () => videoEl.play().catch(() => {}));
+            card.addEventListener('mouseleave', () => {
+              videoEl.pause();
+              videoEl.currentTime = 0;
+            });
           }
-        }
-      } catch (e) {
-        container.innerHTML = '<p style="color:var(--accent);">No projects found or projects/projects.json missing.</p>';
-      }
-    }
 
-    fetchProjects();
-  </script>
+          container.appendChild(card);
+        } catch (e) {
+          console.error(`Error loading folder: ${folder}`, e);
+        }
+      }
+    } catch (e) {
+      container.innerHTML = '<p style="color:var(--accent);">No projects found or projects/projects.json missing.</p>';
+    }
+  }
+
+  fetchProjects();
+</script>
 
   <!-- Physics Engine Script -->
   <script>
