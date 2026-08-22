@@ -124,21 +124,20 @@
               : '';
 
             card.innerHTML = `
-              <div class="card-header">${folder.toUpperCase()}.DAT</div>
-              <div class="img-wrapper">
-                <div class="tags-overlay">${tagsHTML}</div>
-                <img src="${basePath}/thumbnail.jpg" alt="${meta.title}" onerror="this.src='https://via.placeholder.com/400x225/111/fff?text=NO+THUMBNAIL'">
-                ${videoHTML}
+            <div class="card-header">${folder.toUpperCase()}.DAT</div>
+            <div class="img-wrapper">
+              <div class="tags-overlay">${tagsHTML}</div>
+              <img src="${basePath}/${thumbnailFile}" alt="${meta.title}">
+              ${videoHTML}
+            </div>
+            <div class="card-content">
+              <h3>${meta.title}</h3>
+              <p>${meta.description}</p>
+              <div class="btn-group">
+                <a href="project.html?p=${folder}" class="retro-btn">[ VIEW PROJECT ]</a>
               </div>
-              <div class="card-content">
-                <h3>${meta.title}</h3>
-                <p>${meta.description}</p>
-                <div class="btn-group">
-                  <a href="${meta.githubUrl || '#'}" target="_blank" class="retro-btn">[ VIEW SOURCE ]</a>
-                  ${downloadBtnHTML}
-                </div>
-              </div>
-            `;
+            </div>
+          `;
 
             if (meta.hasHoverVideo) {
               const videoEl = card.querySelector('.hover-video');

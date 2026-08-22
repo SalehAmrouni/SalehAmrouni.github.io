@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saleh Amrouni // Project Viewer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #physics-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      background-color: #0f172a;
+    }
+    .desktop { position: relative; z-index: 5; pointer-events: none; }
+    .window { pointer-events: auto; }
+    .media-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .media-gallery img, .media-gallery video {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 1px solid var(--border-light);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="physics-canvas"></canvas>
+
+  <header class="menu-bar" style="position:relative; z-index:10;">
+    <span class="menu-item active" onclick="window.location.href='index.html'">[ &lt; RETURN TO DESKTOP ]</span>
+  </header>
+
+  <main class="desktop">
+    <section class="window" style="margin-top:20px;">
+      <div class="title-bar">
+        <span class="title" id="page-title">C:\PORTFOLIO\LOADING.EXE</span>
+        <div class="window-controls">
+          <button onclick="window.location.href='index.html'">X</button>
+        </div>
+      </div>
+      <div class="window-body" id="project-details">
+        <p>Loading project files...</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    async function loadProjectDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const projectId = params.get('p');
+      const container = document.getElementById('project-details');
+      const titleEl = document.getElementById('page-title');
+
+      if (!projectId) {
+        container.innerHTML = '<p style="color:var(--accent);">No project specified.</p>';
+        return;
+      }
+
+      const basePath = `projects/${projectId}`;
+
+      try {
+        const res = await fetch(`${basePath}/meta.json`);
+        const meta = await res.json();
+
+        titleEl.innerText = `C:\\PORTFOLIO\\${projectId.toUpperCase()}.EXE`;
+
+        const tagsHTML = meta.tags 
+          ? meta.tags.map(t => `<span style="border:1px solid var(--accent); padding:2px 6px; font-size:11px; color:var(--accent);">${t}</span>`).join(' ') 
+          : '';
+
+        const downloadBtn = meta.hasDownload 
+          ? `<a href="${basePath}/download/download.zip" download class="retro-btn">[ DOWNLOAD ZIP ]</a>` 
+          : '';
+
+        const githubBtn = meta.githubUrl 
+          ? `<a href="${meta.githubUrl}" target="_blank" class="retro-btn">[ EXTERNAL REPO ]</a>` 
+          : '';
+
+        let imagesHTML = '';
+        if (meta.images && meta.images.length > 0) {
+          imagesHTML = meta.images.map(img => `<img src="${basePath}/images/${img}" alt="Screenshot">`).join('');
+        }
+
+        let videosHTML = '';
+        if (meta.videos && meta.videos.length > 0) {
+          videosHTML = meta.videos.map(vid => `<video src="${basePath}/videos/${vid}" controls></video>`).join('');
+        }
+
+        container.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+            <div>
+              <h1>> ${meta.title}</h1>
+              <div style="margin-top:8px;">${tagsHTML}</div>
+            </div>
+            <a href="index.html" class="retro-btn">&lt; BACK</a>
+          </div>
+
+          <p style="line-height:1.6; margin: 16px 0; color:#ccc;">${meta.description}</p>
+
+          <div class="btn-group" style="display:flex; gap:10px; margin-bottom:20px;">
+            ${downloadBtn}
+            ${githubBtn}
+          </div>
+
+          ${imagesHTML || videosHTML ? '<strong style="color:var(--accent);">PROJECT MEDIA:</strong>' : ''}
+          <div class="media-gallery">
+            ${imagesHTML}
+            ${videosHTML}
+          </div>
+        `;
+      } catch (e) {
+        container.innerHTML = '<p style="color:red;">Failed to load project details.</p>';
+      }
+    }
+
+    loadProjectDetails();
+  </script>
+</body>
+</html>
