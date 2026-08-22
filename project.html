@@ -15,17 +15,39 @@
     }
     .desktop { position: relative; z-index: 5; pointer-events: none; }
     .window { pointer-events: auto; }
-    .media-gallery {
+    
+    .media-section {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .media-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
-      margin-top: 16px;
     }
-    .media-gallery img, .media-gallery video {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+
+    .media-card {
+      background: #000;
       border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-card video {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      display: block;
+      background: #000;
     }
   </style>
 </head>
@@ -75,21 +97,32 @@
           : '';
 
         const downloadBtn = meta.hasDownload 
-          ? `<a href="${basePath}/download/download.zip" download class="retro-btn">[ DOWNLOAD ZIP ]</a>` 
+          ? `<a href="${basePath}/download/download.zip" download="download.zip" class="retro-btn">[ DOWNLOAD ZIP ]</a>` 
           : '';
 
         const githubBtn = meta.githubUrl 
-          ? `<a href="${meta.githubUrl}" target="_blank" class="retro-btn">[ EXTERNAL REPO ]</a>` 
+          ? `<a href="${meta.githubUrl}" target="_blank" class="retro-btn">[ VIEW REPO ]</a>` 
           : '';
 
         let imagesHTML = '';
         if (meta.images && meta.images.length > 0) {
-          imagesHTML = meta.images.map(img => `<img src="${basePath}/images/${img}" alt="Screenshot">`).join('');
+          imagesHTML = meta.images.map(img => `
+            <div class="media-card">
+              <img src="${basePath}/images/${img}" alt="Screenshot">
+            </div>
+          `).join('');
         }
 
         let videosHTML = '';
         if (meta.videos && meta.videos.length > 0) {
-          videosHTML = meta.videos.map(vid => `<video src="${basePath}/videos/${vid}" controls></video>`).join('');
+          videosHTML = meta.videos.map(vid => `
+            <div class="media-card">
+              <video controls playsinline preload="metadata">
+                <source src="${basePath}/videos/${vid}" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+          `).join('');
         }
 
         container.innerHTML = `
@@ -108,11 +141,7 @@
             ${githubBtn}
           </div>
 
-          ${imagesHTML || videosHTML ? '<strong style="color:var(--accent);">PROJECT MEDIA:</strong>' : ''}
-          <div class="media-gallery">
-            ${imagesHTML}
-            ${videosHTML}
-          </div>
+          ${imagesHTML || videosHTML ? '<div class="media-section"><strong style="color:var(--accent);">PROJECT MEDIA:</strong><div class="media-grid">' + imagesHTML + videosHTML + '</div></div>' : ''}
         `;
       } catch (e) {
         container.innerHTML = '<p style="color:red;">Failed to load project details.</p>';
