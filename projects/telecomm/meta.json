@@ -1,6 +1,6 @@
 {
   "title": "TELECOMM a server client test tool",
-  "description": "Built using ENET, Telecomm is basically a client and server text tool, that can be routed through other programs\nIf you are using this as the server (initator) just start the telecomm.exe, If you are NOT the initator and are the server, open the telecomm.exe via the command prompt BUT after typing telecomm.exe put your connecting IP, EG telecomm.exe 127.0.0.1.",
+  "description": "Built using ENET, Telecomm is basically a client and server text tool, that can be routed through other programs.\n Usuage Instructions: If you are using this as the server (initator) just start the telecomm.exe, If you are NOT the initator and are the server, open the telecomm.exe via the command prompt BUT after typing telecomm.exe put your connecting IP, EG telecomm.exe 127.0.0.1.",
   "tags": ["C", "NETWORKING","TOOL"],
   "thumbnail": "thumbnail.png",
   "githubUrl": "",
