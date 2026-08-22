@@ -7,5 +7,5 @@
   "hasHoverVideo": true,
   "hasDownload": false,
   "images": ["1.png", "2.png"],
-  "videos": []
+  "videos": ["1.mp4","2.mp4","3.mp4"]
 }
