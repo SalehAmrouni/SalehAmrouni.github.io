@@ -5,7 +5,7 @@
   "thumbnail": "thumbnail.png",
   "githubUrl": "",
   "hasHoverVideo": true,
-  "hasDownload": false,
+  "hasDownload": true,
   "images": ["1.png"],
   "videos": ["1.mp4","2.mp4"]
 }
