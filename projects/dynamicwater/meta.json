@@ -1,0 +1,11 @@
+{
+  "title": "Dynamic Water PBF",
+  "description": "This is a Water system that utilizes the Position based fluid system, that is completley GPU based (requires MINIMUM DX11) that is completley in real time and faster than SPH counterparts. ",
+  "tags": ["C", "PHYSICS","DEMO"],
+  "thumbnail": "thumbnail.png",
+  "githubUrl": "",
+  "hasHoverVideo": true,
+  "hasDownload": false,
+  "images": ["1.png"],
+  "videos": ["1.mp4","2.mp4"]
+}
