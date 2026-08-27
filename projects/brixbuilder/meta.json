@@ -1,0 +1,11 @@
+{
+  "title": "BrixBuilder",
+  "description": "An engine written in C++, It is very rough on the edges BUT extremley light and contains a physics engine. And various systems for debugging and customization so it is a compact and feature packed engine.",
+  "tags": ["C++", "SOFTWARE"],
+  "thumbnail": "thumbnail.png",
+  "githubUrl": "",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": ["1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png"],
+  "videos": []
+}
