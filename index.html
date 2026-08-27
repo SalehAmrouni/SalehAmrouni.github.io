@@ -121,6 +121,7 @@
             ? `<video class="hover-video" src="${basePath}/hover.mp4" loop muted playsinline></video>`
             : '';
 
+          
           card.innerHTML = `
             <div class="card-header">${folder.toUpperCase()}.DAT</div>
             <div class="img-wrapper">
@@ -146,7 +147,7 @@
               videoEl.currentTime = 0;
             });
           }
-
+          
           container.appendChild(card);
         } catch (e) {
           console.error(`Error loading folder: ${folder}`, e);
