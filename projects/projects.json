@@ -1,8 +1,8 @@
 [
-    "lights",
-    "ragcore",
-    "telecomm",
-    "dynamicwater",
-    "brixbuilder",
-    "background"
+  "dynamicwater",
+  "ragcore",
+  "brixbuilder",
+  "background",
+  "telecomm",
+  "lights"
 ]

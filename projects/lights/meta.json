@@ -1,11 +1,19 @@
 {
-  "title": "Lights in raylib and shadows",
-  "description": "Built a simple shadow and lighting system using raylib.",
-  "tags": ["C", "3D","DEMO","OPEN SOURCE"],
-  "thumbnail": "thumbnail.png",
+  "title": "Lights and Shadows in raylib",
+  "description": "A simple real-time lighting and shadow system built with raylib.",
+  "tags": [
+    "C",
+    "3D",
+    "DEMO",
+    "OPEN SOURCE"
+  ],
+  "thumbnail": "thumbnail.webp",
   "githubUrl": "",
   "hasHoverVideo": false,
   "hasDownload": true,
-  "images": ["1.png", "2.png"],
+  "images": [
+    "1.png",
+    "2.png"
+  ],
   "videos": []
 }

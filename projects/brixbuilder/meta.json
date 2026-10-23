@@ -1,11 +1,24 @@
 {
   "title": "BrixBuilder",
-  "description": "An engine written in C++, It is very rough on the edges BUT extremley light and contains a physics engine. And various systems for debugging and customization so it is a compact and feature packed engine.",
-  "tags": ["C++", "SOFTWARE"],
-  "thumbnail": "thumbnail.png",
+  "description": "A game engine written in C++. It's rough around the edges, but extremely light: it ships with its own physics engine plus a set of debugging and customization systems, so it's compact and packed with features.",
+  "tags": [
+    "C++",
+    "ENGINE",
+    "PHYSICS"
+  ],
+  "thumbnail": "thumbnail.webp",
   "githubUrl": "",
   "hasHoverVideo": false,
   "hasDownload": false,
-  "images": ["1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png"],
+  "images": [
+    "1.webp",
+    "2.png",
+    "3.png",
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png"
+  ],
   "videos": []
 }

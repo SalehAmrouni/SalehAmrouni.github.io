@@ -1,285 +1,137 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saleh Amrouni // Portfolio</title>
+  <title>Saleh Amrouni // Systems &amp; Graphics Programmer</title>
+  <meta name="description" content="Portfolio of Saleh Amrouni: real-time physics, game engines and low-level tools written in C and C++.">
+  <meta name="theme-color" content="#0b0e13">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Saleh Amrouni // Portfolio">
+  <meta property="og:description" content="Real-time physics, game engines and low-level tools written in C and C++.">
+  <meta property="og:url" content="https://salehamrouni.github.io/">
+  <meta property="og:image" content="https://salehamrouni.github.io/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=VT323&display=swap">
   <link rel="stylesheet" href="style.css">
-  
-  <style>
-    /* Integrated Physics Canvas Layering */
-    #physics-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      background-color: #0f172a; /* Slate dark background */
-    }
-
-    /* Ensure desktop UI sits above the background canvas */
-    .menu-bar {
-      position: relative;
-      z-index: 10;
-      pointer-events: auto;
-    }
-
-    .desktop {
-      position: relative;
-      z-index: 5;
-      pointer-events: none; /* Clicks pass through empty desktop space to canvas */
-    }
-
-    .window {
-      pointer-events: auto; /* Re-enable clicks for windows, buttons, and links */
-    }
-  </style>
+  <script type="module" src="js/desktop.js"></script>
 </head>
-<body>
+<body class="has-taskbar">
+  <!-- Pixel icons used by the desktop and Start menu -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icon-txt" viewBox="0 0 32 32">
+      <path d="M7 3h13l6 6v20H7z" fill="#e6edf3"/><path d="M20 3v6h6" fill="#8b96a5"/>
+      <path d="M10 13h12M10 17h12M10 21h12M10 25h8" stroke="#3a4452" stroke-width="2"/>
+    </symbol>
+    <symbol id="icon-folder" viewBox="0 0 32 32">
+      <path d="M3 7h10l3 3h13v17H3z" fill="#f5b942"/><path d="M3 12h26v15H3z" fill="#ffd27a"/>
+    </symbol>
+    <symbol id="icon-exe" viewBox="0 0 32 32">
+      <path d="M3 5h26v22H3z" fill="#11151b" stroke="#e6edf3" stroke-width="2"/><path d="M4 6h24v5H4z" fill="#22d3c5"/>
+      <path d="M8 16l4 3-4 3M14 23h7" stroke="#22d3c5" stroke-width="2" fill="none"/>
+    </symbol>
+    <symbol id="icon-link" viewBox="0 0 32 32">
+      <circle cx="16" cy="16" r="12" fill="#11151b" stroke="#22d3c5" stroke-width="2"/>
+      <path d="M4 16h24M16 4c-6 7-6 17 0 24M16 4c6 7 6 17 0 24" stroke="#22d3c5" stroke-width="2" fill="none"/>
+    </symbol>
+    <symbol id="icon-bin" viewBox="0 0 32 32">
+      <path d="M8 9h16l-2 19H10z" fill="#8b96a5"/><path d="M6 6h20v3H6zM13 3h6v3h-6z" fill="#c3ccd6"/>
+      <path d="M13 13v11M16 13v11M19 13v11" stroke="#3a4452" stroke-width="2"/>
+    </symbol>
+    <symbol id="icon-power" viewBox="0 0 32 32">
+      <path d="M16 4v11" stroke="#ff5f7a" stroke-width="3"/><path d="M9 9a10 10 0 1 0 14 0" stroke="#ff5f7a" stroke-width="3" fill="none"/>
+    </symbol>
+  </svg>
 
-  <!-- Background Physics Canvas -->
-  <canvas id="physics-canvas"></canvas>
+  <canvas id="physics-canvas" aria-hidden="true"></canvas>
 
-  <!-- Retro Menu Bar -->
-  <header class="menu-bar">
-    <span class="menu-item active">FILE</span>
-    <span class="menu-item">EDIT</span>
-    <span class="menu-item">VIEW</span>
-    <span class="menu-item">PROJECTS</span>
-    <span class="menu-item">HELP</span>
-  </header>
+  <main class="desktop" id="desktop">
+    <ul class="desktop-icons" id="desktop-icons" aria-label="Desktop shortcuts">
+      <li><button type="button" class="desk-icon" data-open="about"><svg><use href="#icon-txt"/></svg><span>README.TXT</span></button></li>
+      <li><button type="button" class="desk-icon" data-open="projects"><svg><use href="#icon-folder"/></svg><span>PROJECTS</span></button></li>
+      <li><button type="button" class="desk-icon" data-href="https://github.com/SalehAmrouni"><svg><use href="#icon-link"/></svg><span>GITHUB.URL</span></button></li>
+      <li><button type="button" class="desk-icon" data-open="bin"><svg><use href="#icon-bin"/></svg><span>RECYCLE BIN</span></button></li>
+    </ul>
 
-  <main class="desktop">
-
-    <!-- Bio / Intro Window -->
-    <section class="window">
+    <section class="window" id="about" data-win="about" data-label="README.TXT" aria-labelledby="about-title">
       <div class="title-bar">
         <span class="title">C:\USERS\SALEH\README.TXT</span>
         <div class="window-controls">
-          <button>_</button>
-          <button>&#9633;</button>
-          <button class="close">X</button>
+          <button type="button" data-action="minimize" aria-label="Minimize" aria-expanded="true">_</button>
+          <button type="button" data-action="maximize" aria-label="Maximize" class="os-only">&#9633;</button>
+          <button type="button" data-action="close" aria-label="Close" class="close">X</button>
         </div>
       </div>
-      <div class="window-body">
-        <h1>> SALEH AMROUNI</h1>
-        <p class="subtitle">Coding projects!</p>
-        <p>Building high-performance software, custom tools, and systems from scratch.</p>
+      <div class="window-body readme">
+        <h1 id="about-title">&gt; SALEH AMROUNI<span class="cursor" aria-hidden="true">_</span></h1>
+        <p class="subtitle">SYSTEMS &amp; GRAPHICS PROGRAMMER // C, C++</p>
+        <p>I build real-time physics, game engines and low-level tools from scratch, from GPU fluid simulation to networking utilities.</p>
+        <p class="hint os-only">Tip: drag windows around, double-click icons, and hold the mouse on the empty desktop to pour cubes.</p>
+        <div class="contact-row" id="contact">
+          <a class="retro-btn" href="https://github.com/SalehAmrouni" target="_blank" rel="noopener">[ GITHUB ]</a>
+          <!-- Add more contact links here, e.g.:
+          <a class="retro-btn" href="mailto:you@example.com">[ EMAIL ]</a>
+          <a class="retro-btn" href="https://yourname.itch.io" target="_blank" rel="noopener">[ ITCH.IO ]</a>
+          -->
+        </div>
       </div>
     </section>
 
-    <!-- Projects Window -->
-    <section class="window">
+    <section class="window" id="projects" data-win="projects" data-label="PROJECTS.EXE" aria-labelledby="projects-title">
       <div class="title-bar">
-        <span class="title">C:\PORTFOLIO\PROJECTS.EXE</span>
+        <span class="title" id="projects-title">C:\PORTFOLIO\PROJECTS.EXE</span>
         <div class="window-controls">
-          <button>_</button>
-          <button>&#9633;</button>
-          <button class="close">X</button>
+          <button type="button" data-action="minimize" aria-label="Minimize" aria-expanded="true">_</button>
+          <button type="button" data-action="maximize" aria-label="Maximize" class="os-only">&#9633;</button>
+          <button type="button" data-action="close" aria-label="Close" class="close">X</button>
         </div>
       </div>
       <div class="window-body">
-        <!-- Dynamic Projects Container -->
-        <div class="projects-grid" id="projects-container">
-          <!-- Dynamically populated via JS -->
+        <div class="filter-panel">
+          <div class="filter-bar" id="project-filters" role="toolbar" aria-label="Filter projects by tag"></div>
+          <span class="filter-status" aria-live="polite">READING DIRECTORY...</span>
         </div>
+        <div class="projects-grid" id="projects-container" aria-busy="true"></div>
       </div>
     </section>
-
   </main>
 
-<script>
-  async function fetchProjects() {
-    const container = document.getElementById('projects-container');
-    
-    try {
-      const res = await fetch('projects/projects.json');
-      const projectFolders = await res.json();
+  <footer class="taskbar">
+    <button type="button" class="start-btn" id="start-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="start-menu">
+      <svg><use href="#icon-exe"/></svg>START
+    </button>
+    <div class="task-buttons" id="task-buttons" aria-label="Open windows"></div>
+    <div class="tray">
+      <button type="button" class="tray-btn" id="cubes-toggle" aria-pressed="true" title="Toggle background cubes">CUBES</button>
+      <time class="clock" id="clock"></time>
+    </div>
+  </footer>
 
-      container.innerHTML = '';
+  <nav class="start-menu" id="start-menu" aria-label="Start menu" hidden>
+    <div class="start-side" aria-hidden="true">SALEH<b>OS</b></div>
+    <ul role="menu">
+      <li role="none"><button type="button" role="menuitem" data-open="about"><svg><use href="#icon-txt"/></svg>README.TXT</button></li>
+      <li role="none"><button type="button" role="menuitem" data-open="projects"><svg><use href="#icon-folder"/></svg>ALL PROJECTS</button></li>
+      <li role="separator"></li>
+      <li role="none" class="start-heading">PROGRAMS</li>
+      <li role="none"><ul id="start-programs" class="start-programs"></ul></li>
+      <li role="separator"></li>
+      <li role="none"><a role="menuitem" href="https://github.com/SalehAmrouni" target="_blank" rel="noopener"><svg><use href="#icon-link"/></svg>GITHUB &#8599;</a></li>
+      <li role="none"><button type="button" role="menuitem" data-action="shutdown"><svg><use href="#icon-power"/></svg>SHUT DOWN...</button></li>
+    </ul>
+  </nav>
 
-      for (const folder of projectFolders) {
-        const basePath = `projects/${folder}`;
-        
-        try {
-          const metaRes = await fetch(`${basePath}/meta.json`);
-          const meta = await metaRes.json();
+  <div class="boot-screen" id="boot-screen" hidden>
+    <pre id="boot-log"></pre>
+    <p class="boot-skip">PRESS ANY KEY OR CLICK TO SKIP</p>
+  </div>
 
-          const card = document.createElement('div');
-          card.className = 'project-card';
-
-          // Declare all variables BEFORE template literal generation
-          const thumbnailFile = meta.thumbnail || 'thumbnail.png';
-          
-          const tagsHTML = meta.tags
-            ? meta.tags.map(t => `<span>${t}</span>`).join('')
-            : '';
-
-          const videoHTML = meta.hasHoverVideo
-            ? `<video class="hover-video" src="${basePath}/hover.mp4" loop muted playsinline></video>`
-            : '';
-
-          
-          card.innerHTML = `
-            <div class="card-header">${folder.toUpperCase()}.DAT</div>
-            <div class="img-wrapper">
-              <div class="tags-overlay">${tagsHTML}</div>
-              <img src="${basePath}/${thumbnailFile}" alt="${meta.title}">
-              ${videoHTML}
-            </div>
-            <div class="card-content">
-              <h3>${meta.title}</h3>
-              <p>${meta.description}</p>
-              <div class="btn-group">
-                <a href="project.html?p=${folder}" class="retro-btn">[ VIEW PROJECT ]</a>
-              </div>
-            </div>
-          `;
-
-          // Hover video playback listener
-          if (meta.hasHoverVideo) {
-            const videoEl = card.querySelector('.hover-video');
-            card.addEventListener('mouseenter', () => videoEl.play().catch(() => {}));
-            card.addEventListener('mouseleave', () => {
-              videoEl.pause();
-              videoEl.currentTime = 0;
-            });
-          }
-          
-          container.appendChild(card);
-        } catch (e) {
-          console.error(`Error loading folder: ${folder}`, e);
-        }
-      }
-    } catch (e) {
-      container.innerHTML = '<p style="color:var(--accent);">No projects found or projects/projects.json missing.</p>';
-    }
-  }
-
-  fetchProjects();
-</script>
-
-  <!-- Physics Engine Script -->
-  <script>
-    const canvas = document.getElementById('physics-canvas');
-    const ctx = canvas.getContext('2d');
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    const MAX_BODIES = 150;
-    const bodies = [];
-    let autoSpawnTimer = 0;
-    let globalTime = 0;
-    let isMouseDown = false;
-    let mousePos = { x: 0, y: 0 };
-
-    const neonColors = ['#38bdf8', '#34d399', '#f43f5e', '#a855f7', '#fbbf24'];
-
-    class Cube {
-      constructor(x, y, vx, vy) {
-        this.x = x;
-        this.y = y;
-        this.vx = vx;
-        this.vy = vy;
-        this.size = Math.random() * 18 + 16;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.vRot = (Math.random() - 0.5) * 5;
-        this.color = neonColors[Math.floor(Math.random() * neonColors.length)];
-      }
-
-      update(dt, gx, gy) {
-        this.vx += gx * dt;
-        this.vy += gy * dt;
-        this.x += this.vx * dt;
-        this.y += this.vy * dt;
-        this.rotation += this.vRot * dt;
-
-        const half = this.size / 2;
-        if (this.x - half < 0) { this.x = half; this.vx *= -0.8; }
-        if (this.x + half > canvas.width) { this.x = canvas.width - half; this.vx *= -0.8; }
-        if (this.y - half < 0) { this.y = half; this.vy *= -0.8; }
-        if (this.y + half > canvas.height) {
-          this.y = canvas.height - half;
-          this.vy *= -0.8;
-          if (Math.random() > 0.6) return false;
-        }
-        return true;
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = 0.2;
-        ctx.fillRect(-this.size / 2 - 3, -this.size / 2 - 3, this.size + 6, this.size + 6);
-
-        ctx.globalAlpha = 1.0;
-        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-
-        ctx.restore();
-      }
-    }
-
-    function spawn(x, y) {
-      if (bodies.length < MAX_BODIES) {
-        const vx = (Math.random() - 0.5) * 300;
-        const vy = (Math.random() - 0.5) * 300;
-        bodies.push(new Cube(x, y, vx, vy));
-      }
-    }
-
-    window.addEventListener('mousedown', (e) => { 
-      if (e.target === canvas || e.target.classList.contains('desktop')) {
-        isMouseDown = true; 
-        mousePos = { x: e.clientX, y: e.clientY }; 
-        spawn(e.clientX, e.clientY); 
-      }
-    });
-    window.addEventListener('mouseup', () => isMouseDown = false);
-    window.addEventListener('mousemove', (e) => { mousePos = { x: e.clientX, y: e.clientY }; });
-
-    let lastTime = performance.now();
-    function loop(now) {
-      const dt = Math.min((now - lastTime) / 1000, 0.05);
-      lastTime = now;
-      globalTime += dt;
-
-      if (isMouseDown) spawn(mousePos.x, mousePos.y);
-
-      autoSpawnTimer += dt;
-      if (autoSpawnTimer >= 0.4 && bodies.length < MAX_BODIES) {
-        autoSpawnTimer = 0;
-        bodies.push(new Cube(Math.random() * (canvas.width - 100) + 50, -20, (Math.random() - 0.5) * 150, Math.random() * 100 + 100));
-      }
-
-      const gx = Math.sin(globalTime * 1.2) * 250;
-      const gy = Math.cos(globalTime * 0.7) * 120 + 180;
-
-      ctx.fillStyle = '#0f172a';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = bodies.length - 1; i >= 0; i--) {
-        const alive = bodies[i].update(dt, gx, gy);
-        if (!alive) {
-          bodies.splice(i, 1);
-        } else {
-          bodies[i].draw();
-        }
-      }
-
-      requestAnimationFrame(loop);
-    }
-
-    requestAnimationFrame(loop);
-  </script>
+  <div class="shutdown-screen" id="shutdown-screen" hidden>
+    <p>It's now safe to turn off<br>your computer.</p>
+    <button type="button" class="retro-btn" id="reboot-btn">[ RESTART ]</button>
+  </div>
 </body>
 </html>

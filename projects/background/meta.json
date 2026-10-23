@@ -1,8 +1,13 @@
 {
   "title": "Serene Background (Windows)",
-  "description": "Serene Background is a simple C program that changes the desktop background on Windows. It allows users to set a custom image as their wallpaper, providing a personalized touch to their desktop environment.",
-  "tags": ["C", "VISUAL","FUN"],
-  "thumbnail": "thumbnail.png",
+  "description": "A small C program that changes your Windows desktop background, so you can set any image as a custom wallpaper.",
+  "tags": [
+    "C",
+    "VISUAL",
+    "FUN"
+  ],
+  "requirements": "Windows.",
+  "thumbnail": "thumbnail.webp",
   "githubUrl": "",
   "hasHoverVideo": true,
   "hasDownload": true,

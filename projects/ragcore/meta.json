@@ -1,11 +1,22 @@
 {
-  "title": "RAGCORE, an endorphin-like middleware",
-  "description": "HEAVY WIP, MIDDLEWARE, RAGCORE is a middleware that allows you to easily create human like interactions in your game engines.",
-  "tags": ["C", "MIDDLEWARE","TO BE RELEASED"],
-  "thumbnail": "thumbnail.png",
+  "title": "RAGCORE, an Endorphin-like middleware",
+  "description": "Heavy work in progress. RAGCORE is middleware that makes it easy to create human-like physical interactions in your game engine.",
+  "tags": [
+    "C",
+    "MIDDLEWARE",
+    "TO BE RELEASED"
+  ],
+  "thumbnail": "thumbnail.webp",
   "githubUrl": "",
   "hasHoverVideo": true,
   "hasDownload": false,
-  "images": ["1.png", "2.png"],
-  "videos": ["1.mp4","2.mp4","3.mp4"]
+  "images": [
+    "1.png",
+    "2.png"
+  ],
+  "videos": [
+    "1.mp4",
+    "2.mp4",
+    "3.mp4"
+  ]
 }
