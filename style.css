@@ -521,6 +521,14 @@ button.media-card:hover { border-color: var(--accent); }
 
 .media-card video { object-fit: contain; }
 
+.media-card iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+
 /* ---------- Lightbox ---------- */
 .lightbox {
   position: fixed;

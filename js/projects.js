@@ -182,6 +182,8 @@ export function renderDetail(project) {
       </button>`),
     ...galleryVideos.map((src) => `
       <div class="media-card"><video src="${src}" controls playsinline preload="metadata"></video></div>`),
+    ...(project.youtube || []).map((id) => `
+      <div class="media-card"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}" title="${escapeHTML(project.title)} video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`),
   ].join('');
 
   const buttons = [

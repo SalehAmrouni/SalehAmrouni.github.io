@@ -20,6 +20,7 @@ Retro-desktop portfolio. Plain HTML/CSS/JS, no build step; GitHub Pages serves i
   "thumbnail": "thumbnail.png",
   "githubUrl": "",
   "liveUrl": "",
+  "youtube": ["YouTube video id"],
   "hasHoverVideo": false,
   "hasDownload": false,
   "images": ["1.png"],
