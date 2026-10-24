@@ -1,6 +1,6 @@
 {
   "title": "Student Atlas",
-  "description": "A personalized map of opportunities for high school students, especially ones without easy access to a college counselor. It covers 200+ curated research programs, internships, competitions, summer programs and scholarships across seven areas.\nA short Pathway Wizard builds a private profile and every opportunity gets an explainable fit score. Zeus, the built-in guide, understands plain-English questions, searches the directory and helps students plan. College Lab adds essay feedback, transcript and GPA analysis, a mentor chat and a college list, and teachers can run class rooms with a dashboard.",
+  "description": "A personalized map of opportunities for high school students, especially ones without easy access to a college counselor. It started as my entry for the TSA Webmaster 2026 competition. It covers 200+ curated research programs, internships, competitions, summer programs and scholarships across seven areas.\nA short Pathway Wizard builds a private profile and every opportunity gets an explainable fit score. Zeus, the built-in guide, understands plain-English questions, searches the directory and helps students plan. College Lab adds essay feedback, transcript and GPA analysis, a mentor chat and a college list, and teachers can run class rooms with a dashboard.",
   "tags": [
     "JAVASCRIPT",
     "WEB",
