@@ -1,0 +1,18 @@
+{
+  "title": "Jobwise, a pocket job planner",
+  "description": "A personal planner for field work. Import your work sheet from Excel, then let Jobwise draw a small batch of jobs from your GPS position and plan a sensible route. Finish or skip stops as you go and draw again.\nIt filters and searches jobs by address, date, area or work type, estimates pay and vehicle costs per batch, can respect appointment windows, and keeps everything on your device, no account needed.",
+  "tags": [
+    "JAVASCRIPT",
+    "MOBILE",
+    "TOOL"
+  ],
+  "howItWorks": "A Vite web app that works offline as a PWA and stores jobs in IndexedDB. Routing runs in a Vercel serverless function, and the same app ships to Android and iOS through Capacitor.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp"
+  ],
+  "videos": []
+}

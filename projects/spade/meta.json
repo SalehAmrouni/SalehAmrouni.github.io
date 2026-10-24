@@ -1,0 +1,20 @@
+{
+  "title": "Spade, the SPASTAZ map editor",
+  "description": "The 3D level editor every SPASTAZ map is built in. Drag parts, walls, rooms, stairs, furniture and gameplay markers from the toolbox into the 3D view; doors and windows dropped on a wall cut their own hole.\nIt also does terrain, water and painted foliage, weather and time of day, and a map checker that catches problems before you play. Press F5 and Spade launches the game with your map loaded.",
+  "tags": [
+    "C",
+    "TOOL",
+    "EDITOR"
+  ],
+  "howItWorks": "Written in C with raylib, sharing the map code with the game so what you build is exactly what loads.\nCo-op editing lets you host a map and edit it with other people, directly or through online rooms on spastaz.com.\nLua plugins and a built-in Lua console automate repetitive work, and trigger parts can call mod scripts in game.\nTerrain, water, foliage and models ride on the end of the map file as a versioned, checksummed trailer, so older builds still read the maps.",
+  "requirements": "Windows.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://spastaz.com",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp"
+  ],
+  "videos": []
+}

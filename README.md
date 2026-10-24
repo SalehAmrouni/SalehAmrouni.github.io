@@ -19,6 +19,7 @@ Retro-desktop portfolio. Plain HTML/CSS/JS, no build step; GitHub Pages serves i
   "requirements": "Optional section.",
   "thumbnail": "thumbnail.png",
   "githubUrl": "",
+  "liveUrl": "",
   "hasHoverVideo": false,
   "hasDownload": false,
   "images": ["1.png"],

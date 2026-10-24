@@ -1,0 +1,19 @@
+{
+  "title": "EchoLens, an accessibility hub",
+  "description": "An accessibility assistant built for a TSA competition, with a vision side and a hearing side.\nVision Assistance watches the camera, recognizes objects in real time and reads out what it sees. Hearing Assistance gives live speech-to-text captions with translation into other languages, an ambient gain boost, and an export of the conversation as a report. Every button is narrated on hover, so the whole app can be used without seeing the screen.",
+  "tags": [
+    "PYTHON",
+    "AI",
+    "ACCESSIBILITY"
+  ],
+  "howItWorks": "A Flask app serves the interface. Object detection runs YOLOv8 through Ultralytics on OpenCV camera frames, speech is spoken with pyttsx3, and translation goes through deep-translator.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "https://github.com/SalehAmrouni/SDHS_2194-1",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp"
+  ],
+  "videos": []
+}
