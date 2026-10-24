@@ -1,0 +1,25 @@
+{
+  "title": "ActionDoll, active ragdolls for Roblox",
+  "description": "A Roblox library for making active ragdolls: physics-driven characters that balance, stumble, fall and get back up instead of playing canned animations. It comes with Sangine, a character system that does away with Roblox's Humanoid entirely, so you can build fully physics-based games.\nI developed it over two years and released it for free on the Roblox Developer Forum, with four example places: capsule characters in a breach-and-entry game, R6 characters with R6 and R15 ragdoll rigs (a SWAT game and a Squid Game style game), and a crisis response game with static-animation characters. Other developers have since built their own games on it.",
+  "tags": [
+    "LUA",
+    "ROBLOX",
+    "PHYSICS",
+    "OPEN SOURCE"
+  ],
+  "howItWorks": "Each limb is a physics body held together by constraints, and motors drive the joints toward a target pose so the character keeps its balance while still reacting to hits, falls and collisions. Ragdoll state is replicated smoothly to every player.\nThe library is modular and array-based, so it works with active or passive ragdolls and is easy to adapt to other rigs, for example turning the R6 setup into R15.",
+  "requirements": "Roblox Studio.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://devforum.roblox.com/t/actiondoll-a-ragdoll-library-for-making-active-ragdolls-sangine-humanoidless-players/4533114",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [],
+  "videos": [],
+  "youtube": [
+    "kxsCS6do04k",
+    "7_DD5qFQU6M",
+    "RBPWK1qsFk4",
+    "ToI3oMdPP1c"
+  ]
+}

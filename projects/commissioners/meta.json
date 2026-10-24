@@ -1,0 +1,20 @@
+{
+  "title": "Commissioners",
+  "description": "A multiplayer shooter made in Unity, with Steam integration for lobbies and networking. It has bots, a gun range, bullet holes, grazes and ricochets, characters with faces whose mouths move as they talk in chat, and support for mods.\nAlongside the game I built the Commissioners hub: a site where players download public and tester builds, browse and upload mods, post on the forum and manage their accounts, with an admin panel for roles, private builds and moderation.",
+  "tags": [
+    "C#",
+    "UNITY",
+    "MULTIPLAYER",
+    "WEB"
+  ],
+  "howItWorks": "The game uses Unity's Netcode for GameObjects over the Facepunch Steamworks transport.\nThe hub is a Next.js and TypeScript site backed by Supabase for accounts, roles, file storage and the forum, deployed on Vercel.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://comm-site.vercel.app",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp"
+  ],
+  "videos": []
+}

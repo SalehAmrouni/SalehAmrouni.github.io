@@ -1,0 +1,22 @@
+{
+  "title": "Firefighting AI for Roblox",
+  "description": "An AI emergency response system I made in Roblox in 2022. When a fire breaks out, AI crews respond on their own: fire engines drive to the scene, firefighters get out, raise ladders against the building and put the fire out with hoses, and police units show up alongside them.\nThe same system handles different incidents, from a burning row of apartments in the city to a crashed, burning airliner on an airport runway with crash tenders and rescue crews.",
+  "tags": [
+    "LUA",
+    "ROBLOX",
+    "AI"
+  ],
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "https://github.com/SalehAmrouni/LuaDev",
+  "hasHoverVideo": true,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp"
+  ],
+  "videos": [
+    "1.mp4",
+    "2.mp4",
+    "3.mp4"
+  ]
+}

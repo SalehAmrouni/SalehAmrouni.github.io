@@ -182,11 +182,16 @@ export function renderDetail(project) {
       </button>`),
     ...galleryVideos.map((src) => `
       <div class="media-card"><video src="${src}" controls playsinline preload="metadata"></video></div>`),
+    ...(project.youtube || []).map((id) => `
+      <div class="media-card"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}" title="${escapeHTML(project.title)} video" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`),
   ].join('');
 
   const buttons = [
     project.hasDownload
       ? `<a href="${base}/download/download.zip" download="${escapeHTML(project.id)}.zip" class="retro-btn primary">[ DOWNLOAD ${escapeHTML(project.id.toUpperCase())}.ZIP ]</a>`
+      : '',
+    project.liveUrl
+      ? `<a href="${escapeHTML(project.liveUrl)}" target="_blank" rel="noopener" class="retro-btn">[ VISIT SITE ]</a>`
       : '',
     project.githubUrl
       ? `<a href="${escapeHTML(project.githubUrl)}" target="_blank" rel="noopener" class="retro-btn">[ VIEW SOURCE ]</a>`

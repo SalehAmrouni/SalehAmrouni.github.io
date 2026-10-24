@@ -1,0 +1,25 @@
+{
+  "title": "SPASTAZ, a tactical SWAT shooter",
+  "description": "A tactical SWAT shooter built the way they used to be: blocky, fast and unforgiving, with one life a round and a team that has to work as one. It runs on my own engine, ORPHAN, written in C on top of raylib.\nEach round starts with the team drawing a breach plan on a top-down map and claiming roles and kit. Inside, you can slide an optiwand under doors, wedge or blow them open with C2, cut the power and clear on night vision, and shout suspects down. Bodies have organs, bones and blood, wounds have to be treated, and sound travels through the building at its real speed. After the round you get body-cam footage, a forensics case file reconstructed from every shot fired, and a grade on how well the team followed procedure.\nUp to 16 players, with bots that stack up, hold angles, call things out on the radio and surrender (or pretend to). 24 maps, from a diner and a pawn shop to a hospital, a school and a rail yard.",
+  "tags": [
+    "C",
+    "GAME",
+    "MULTIPLAYER",
+    "ENGINE"
+  ],
+  "howItWorks": "ORPHAN is a custom C engine built on raylib, with its own body simulation, ballistics, sound propagation and destruction.\nMultiplayer runs on listen hosts or a dedicated server, with a master server and relay for finding and joining matches.\nEverything gameplay-side can be modded in Lua: game modes, scripted entities, weapons, UI, physics and the map itself. The mod API is documented straight from the source and has an in-editor reference.\nReleases are signed and licensed per device through a small Cloudflare Workers + D1 service, with a desktop tool for issuing keys and publishing patches.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://spastaz.com",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp"
+  ],
+  "videos": []
+}
