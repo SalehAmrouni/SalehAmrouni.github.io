@@ -1,0 +1,28 @@
+{
+  "title": "AISLE 666, survival horror in SCP-3008",
+  "description": "A first-person survival horror game set inside SCP-3008, an infinite furniture store no one has found the edge of. By day the faceless staff walk the aisles and ignore you. At 22:00 the lights go out, one breaker at a time, coming toward you, and they don't ignore you any more.\nYou survive on hunger, thirst and wounds: eat, drink, bandage, splint and treat infections, take furniture apart with an Allen key and craft weapons, barricades and alarms from the pieces. Hide in wardrobes or under beds, map the store yourself in your notebook, and film the dark on a camcorder with NightShot. Toppling shelving and collapsing stock can kill you. Co-op adds proximity voice chat, walkie-talkies and a shared save.",
+  "tags": [
+    "C",
+    "GAME",
+    "HORROR",
+    "MULTIPLAYER"
+  ],
+  "howItWorks": "Written in C on my own engine, ORPHAN. The store is generated from a seed and your changes persist; the staff patrol by day and hunt you by sound at night, so running, broken glass and getting sick all make noise.\nShelving, stock and furniture are physics-driven, so racking can be knocked over and buildings can be wrecked. It has an intentionally early-2000s look and a POTATO graphics setting for low-end PCs.\nBased on \"SCP-3008\" by Mortos (CC BY-SA 3.0).",
+  "requirements": "Windows.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://randomunitydev.itch.io/ikea",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.gif"
+  ],
+  "videos": []
+}

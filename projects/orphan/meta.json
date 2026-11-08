@@ -1,0 +1,20 @@
+{
+  "title": "ORPHAN, a game engine in C",
+  "description": "The engine SPASTAZ, UPLINK, AISLE 666 and my other recent games run on. It's built the way engines were made around 2002: a drop-down console with cvars and binds, game.exe +map dm1 command lines, maps made in a separate editor (Spade), and an SDK editor that ties a game together, Orphan Workshop.\nA game is a C program that hands the engine a few functions, and the engine runs the rest. The Workshop has tabs for code (with build, play and errors on their lines), live-compiling shaders, placing your game's entities on a map, and tools for assets, maps, mods, profiler captures and crash reports. New Project starts from a full first-person starter game or one of the smaller examples: a shooting range, a hover-car racer and a 2D vector arcade game.",
+  "tags": [
+    "C",
+    "ENGINE",
+    "TOOL"
+  ],
+  "howItWorks": "Built on raylib, with box3d physics, Lua 5.4, enet networking, OpenAL Soft and discord-rpc.\nEvery game on it can host and join out of the box, over LAN or a direct address, and never talks to any server of ours. Steam (presence, achievements, join from your friends list) and Discord are optional.\nIt builds natively on Windows with MSYS2, or cross-compiles the same Windows exes from Linux and WSL with mingw-w64, recompiling only what changed.",
+  "requirements": "Windows (or Linux/WSL to cross-build).",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp"
+  ],
+  "videos": []
+}
