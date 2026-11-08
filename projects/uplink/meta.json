@@ -1,0 +1,25 @@
+{
+  "title": "UPLINK, robot parkour on a custom engine",
+  "description": "A first-person, physics-based parkour game I made with Bsquek for thatgamejam #02. You're R9K46T, a logistics robot moving parcels in Bay 4, until something gets into your head and tells you you're not a forklift. Everything after that happens at about twelve metres a second, across the rooftops of a city built on the water.\nThere are no canned animations: the robot is a fully procedural active ragdoll with 10+ moves (vaults, wall runs, tic-tacs, cat leaps, slides, rolls, bar swings and a grappling hook). Fighting uses the same body, so a slide into someone's shins or a knee off the end of the hook is the attack. Every level is generated from a seed, so a new seed is a new city.",
+  "tags": [
+    "C",
+    "GAME",
+    "PHYSICS",
+    "ENGINE"
+  ],
+  "howItWorks": "It runs on ORPHAN, my C engine, with deterministic physics and the active ragdoll adapted from Sub Rosa and tuned for a machine's speed, a person's stance and a camera bolted to the head.\nA hit is two physics capsules touching at speed, and damage is that speed squared; limbs come off and only the head ends it. Security bots are the same body with the same moves and follow your trail, which records every jump you made.\nThe engine adds a custom HDR pipeline, dynamic weather and time of day, and runs at a stable 60 FPS on modest hardware in about 86 MB. No generative AI was used for any of the code, art, music or UI.",
+  "requirements": "Windows, keyboard and mouse.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "https://bsquek.itch.io/uplink",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp"
+  ],
+  "videos": []
+}

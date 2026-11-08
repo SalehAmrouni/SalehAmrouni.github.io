@@ -1,0 +1,23 @@
+{
+  "title": "Still Ascent, a physics platformer",
+  "description": "A small robot climbs a mountain, looking for somewhere quiet. It's a side-on physics platformer where the mountain comes from a seed and climbs through bands: meadow, forest, the old mine, cliffs, wind ridges and ice, up to a quiet summit.\nThe robot is fifteen blocky parts that can be damaged and lost, shed on purpose to make it lighter and jump higher, and rebuilt from old parts at restore points. You get around with a grappling hook you can reel in and out, pick up and throw things, and brace against the wind on the ridges.",
+  "tags": [
+    "C",
+    "GAME",
+    "PHYSICS"
+  ],
+  "howItWorks": "Built on my ORPHAN engine. Every tunable (gravity, jump, grapple range, how hard a landing can be) is a console variable, so it can be changed while you play, and the console can build any mountain seed, break or damage single parts and jump between restore points.\nThe renderer has its own pipeline with grass, depth of field, bloom, light rays, ambient occlusion and film grain, each one switchable, plus a low quality preset.",
+  "requirements": "Windows.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "",
+  "hasHoverVideo": false,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp"
+  ],
+  "videos": []
+}

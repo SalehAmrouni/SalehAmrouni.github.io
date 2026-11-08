@@ -1,0 +1,32 @@
+{
+  "title": "Terra Turf, destructible war in voxels",
+  "description": "Two sides, one city, everything breaks. A multiplayer war game for up to 64 players, with bots to fill the teams, set in a city of early-Roblox style 1 m blocks that can all be dug, blasted and burned.\nPlay Conquest, Team Deathmatch, King of the Hill or Demolition, where the only way to win is to bring the other side's HQ down. You join a squad and pick a class (Rifleman, Breacher, Sapper, Spotter, Supplier, Guerrilla and more), place rally points for your squad to spawn on, and carry kit like C4, frag grenades, ammo bags and sandbags to build cover. Engineers set up manned MGs, AT launchers and turrets, and Spotters call in artillery, mortars, smoke, precision strikes, supply drops and recon flights.\nThere are jeeps, trucks, tanks and helicopters to drive or ride in, trenches and tunnels to dig, and proximity and radio voice chat. Bots stack up, mount vehicles, man the guns and call things out on the radio like players do.",
+  "tags": [
+    "C",
+    "GAME",
+    "MULTIPLAYER",
+    "PHYSICS"
+  ],
+  "howItWorks": "Buildings are wall panels and floor slabs joined by bonds. When bonds break, anything no longer connected to the ground, or too heavy for what's left holding it up, becomes one rigid body that falls, tips and splits on impact.\nTunnels dug under the ground need holding up: unsupported earth creaks for a second and caves in. Explosions start fires that eat wood, spread to people and take out what buildings stood on.\nSoldiers and vehicles run on Sub Rosa's own ragdoll and vehicle simulation (16-bone bodies that balance and step, wheels on sprung joints, a real gearbox), fed by Terra Turf's voxels, buildings and debris. Wounds, burns and lost limbs show on every bone.",
+  "requirements": "Windows.",
+  "thumbnail": "thumbnail.webp",
+  "githubUrl": "",
+  "liveUrl": "",
+  "hasHoverVideo": true,
+  "hasDownload": false,
+  "images": [
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp"
+  ],
+  "videos": [
+    "1.mp4",
+    "2.mp4",
+    "3.mp4",
+    "4.mp4"
+  ]
+}
